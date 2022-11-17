@@ -1,12 +1,25 @@
+import { useContext } from 'react';
+import CartContext from '../../../store/cart-context';
 import MealItemForm from './MealItemForm';
 import classes from './MealItem.module.css';
 
 const MealItem = props => {
+    const cartCtx = useContext(CartContext);
+
     const price = props.price.toLocaleString('pl-PL', {
         style: 'currency',
         currency: 'PLN',
         maximumSignificantDigits: 4
     });
+
+    const addToCartHandler = amount => {
+        cartCtx.addItem({
+            id: props.id,
+            name: props.name,
+            price: props.price,
+            amount: amount
+        });
+    };
 
     return (
         <li className={classes.meal}>
@@ -16,7 +29,7 @@ const MealItem = props => {
                 <div className={classes.price}>{price}</div>
             </div>
             <div>
-                <MealItemForm id={props.id} />
+                <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
             </div>
         </li>
     );
