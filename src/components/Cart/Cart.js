@@ -10,16 +10,18 @@ const Cart = props => {
     const totalAmount = cartCtx.totalAmount.toLocaleString('pl-PL', {
         style: 'currency',
         currency: 'PLN',
-        maximumSignificantDigits: 4
+        minimumFractionDigits: 2
     });
+
     const hasItems = cartCtx.items.length > 0;
 
     const cartItemRemoveHandler = id => {
-        console.log(id);
-        cartCtx.items = cartCtx.items.filter(item => item.id !== id);
+        cartCtx.removeItem(id);
     };
 
-    const cartItemAddHandler = item => {};
+    const cartItemAddHandler = item => {
+        cartCtx.addItem(item);
+    };
 
     const cartItems = (
         <ul className={classes['cart-items']}>
@@ -30,7 +32,10 @@ const Cart = props => {
                     price={item.price}
                     amount={item.amount}
                     onRemove={cartItemRemoveHandler.bind(null, item.id)}
-                    onAdd={cartItemAddHandler.bind(null, item)}
+                    onAdd={cartItemAddHandler.bind(null, {
+                        ...item,
+                        amount: 1
+                    })}
                 />
             ))}
         </ul>

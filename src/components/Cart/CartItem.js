@@ -4,7 +4,7 @@ const CartItem = props => {
     const price = props.price.toLocaleString('pl-PL', {
         style: 'currency',
         currency: 'PLN',
-        maximumSignificantDigits: 4
+        minimumFractionDigits: 2
     });
 
     return (
