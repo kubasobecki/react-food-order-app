@@ -6,7 +6,6 @@ import { FIREBASE_URL_MEALS } from '../../env.js';
 import useHttp from '../../hooks/use-http';
 
 const AvailableMeals = () => {
-    console.count('render');
     const [mealsList, setMealsList] = useState([]);
     const { isLoading, error, sendRequest: sendMealsRequest } = useHttp();
 
@@ -17,7 +16,7 @@ const AvailableMeals = () => {
                 const mealItem = (
                     <MealItem
                         key={key}
-                        id={mealsData[key].id}
+                        id={key}
                         name={mealsData[key].name}
                         description={mealsData[key].description}
                         price={mealsData[key].price}
