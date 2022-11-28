@@ -37,9 +37,11 @@ const AvailableMeals = () => {
     return (
         <section className={classes.meals}>
             <Card>
-                {isLoading && <p>Loading available meals...</p>}
+                {isLoading && (
+                    <p className={classes.info}>Loading available meals...</p>
+                )}
                 {!error && !isLoading && <ul>{mealsList}</ul>}
-                {error && <p>{error}</p>}
+                {error && <p className={classes.info}>{error}</p>}
             </Card>
         </section>
     );

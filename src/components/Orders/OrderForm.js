@@ -64,7 +64,7 @@ const OrderForm = props => {
         setOrderSuccessful(true);
     };
 
-    const submitHandler = async e => {
+    const submitOrderHandler = async e => {
         e.preventDefault();
 
         if (!formIsValid) return;
@@ -94,7 +94,7 @@ const OrderForm = props => {
     };
 
     const orderForm = (
-        <form className={classes.form} onSubmit={submitHandler}>
+        <form className={classes.form} onSubmit={submitOrderHandler}>
             <div className={classes['control-group']}>
                 <div
                     className={`${classes['form-control']} ${classes[firstNameClasses]}`}

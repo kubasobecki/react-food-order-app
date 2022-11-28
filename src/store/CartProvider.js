@@ -52,7 +52,7 @@ const cartReducer = (state, action) => {
     }
 
     if (action.type === 'CLEAR') {
-        return { items: [], totalAmount: 0 };
+        return defaultCartState;
     }
 
     return defaultCartState;
